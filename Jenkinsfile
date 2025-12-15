@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    environment{
+        IMAGE_NAME= "gopikrishna1338/demo-java-app"
+        IMAGE_TAG= "latest"
+    }
     stages {
         stage('checkout') {
             steps{
@@ -7,9 +11,9 @@ pipeline {
                 url : 'https://github.com/gopiseshu/demo-app-java.git'
             }
         }
-        stage('Build'){
+        stage(' image Build'){
             steps{
-                sh 'mvn clean package -DskipTests'
+                sh 'docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .'
             }
         }
     }
