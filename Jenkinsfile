@@ -7,5 +7,10 @@ pipeline {
                 url : 'https://github.com/gopiseshu/demo-app-java.git'
             }
         }
+        stage('Build'){
+            steps{
+                sh 'mvn clean package -DskipTests'
+            }
+        }
     }
 }
